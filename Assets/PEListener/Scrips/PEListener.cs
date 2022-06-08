@@ -1,18 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PEListener : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class PEListener : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler {
+    public Action<object> onClick;
+    public Action<PointerEventData> onClickDown;
+    public Action<PointerEventData> onClickUp;
+    public Action<PointerEventData> onDrag;
+
+    public object args;
+
+    public void OnPointerClick(PointerEventData eventData) {
+        if (onClick != null) {
+            onClick(args);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    public void OnPointerDown(PointerEventData eventData) {
+        if (onClickDown != null) {
+            onClickDown(eventData);
+        }
     }
+    public void OnPointerUp(PointerEventData eventData) {
+        if (onClickUp != null) {
+            onClickUp(eventData);
+        }
+    }
+    public void OnDrag(PointerEventData eventData) {
+        if (onDrag != null) {
+            onDrag(eventData);
+        }
+    }
+
 }
