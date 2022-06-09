@@ -6,6 +6,7 @@
 	功能：Nothing
 *****************************************************/
 
+using System;
 using UnityEngine;
 
 public class GameRoot : MonoBehaviour {
@@ -13,13 +14,28 @@ public class GameRoot : MonoBehaviour {
     public PlayerWindow playerWindow;
     public SettingWindow settingWindow;
 
+    EvtSvc evtSvc;
     PlayerInfoData pd;
+    public static GameRoot Instance;
     private void Awake() {
-        
+        Instance = this;
+        evtSvc = GetComponent<EvtSvc>();
+        pd = new PlayerInfoData {
+            name = "宝安大道小旋风",
+            level = 777,
+        };
     }
 
     private void Start() {
-        
+
+        SetInfoWndState();
+        SetPlayerWndState();
+        SetSettingWndState();
+    }
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            evtSvc.SentEvt(EvtID.OntestLog);
+        }
     }
 
     public PlayerInfoData GetPlayerInfoData() {
@@ -36,6 +52,10 @@ public class GameRoot : MonoBehaviour {
 
     public void SetSettingWndState(bool state = true) {
         settingWindow.gameObject.SetActive(state);
+    }
+
+    public PlayerInfoData GetEvtSvc() {
+        throw new NotImplementedException();
     }
 }
 
