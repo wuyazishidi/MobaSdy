@@ -22,7 +22,7 @@ public class GameRoot : MonoBehaviour {
         evtSvc = GetComponent<EvtSvc>();
         pd = new PlayerInfoData {
             name = "宝安大道小旋风",
-            level = 777,
+            level = 666,
         };
     }
 
@@ -30,12 +30,15 @@ public class GameRoot : MonoBehaviour {
 
         SetInfoWndState();
         SetPlayerWndState();
-        SetSettingWndState();
+        SetSettingWndState(false);
     }
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            evtSvc.SentEvt(EvtID.OntestLog);
+            evtSvc.SendEvt(EvtID.OntestLog);
         }
+    }
+    public EvtSvc GetEvtSvc() {
+        return evtSvc;
     }
 
     public PlayerInfoData GetPlayerInfoData() {
@@ -53,10 +56,7 @@ public class GameRoot : MonoBehaviour {
     public void SetSettingWndState(bool state = true) {
         settingWindow.gameObject.SetActive(state);
     }
-
-    public PlayerInfoData GetEvtSvc() {
-        throw new NotImplementedException();
-    }
+   
 }
 
 public class PlayerInfoData {

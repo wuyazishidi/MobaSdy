@@ -12,17 +12,22 @@ public class InfoWindow:MonoBehaviour {
         pd = GameRoot.Instance.GetPlayerInfoData();
         SetName();
         evtSvc = GameRoot.Instance.GetEvtSvc();
+        evtSvc.AddEvtListener(EvtID.OnPlayerNameChange,RefreshInfoName);
     }
 
     private void OnDisable() {
-        
+        evtSvc.RmvTargetListener(this);
     }
 
     void SetName() {
         txtInfoName.text = pd.name;
     }
 
-    void RefreshInfoName(object param1,object param2) {
-        Debug.Log("InfoWindow Log:"+param1.ToString());
+    public void ClickPlayerIcon() {
+        GameRoot.Instance.SetSettingWndState();
+    }
+
+     void RefreshInfoName(object param1,object param2) {
+        SetName();
     }
 }

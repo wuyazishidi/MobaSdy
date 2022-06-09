@@ -37,7 +37,7 @@ public class EvtSvc:MonoBehaviour {
         msger.RmvHandlerByTarget(target);
     }
 
-    public void SentEvt(EvtID evt, object param1, object param2) {
+    public void SendEvt(EvtID evt, object param1=null, object param2=null) {
         msger.InvokeMsgHandler(evt,param1,param2);
     }
 

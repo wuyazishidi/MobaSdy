@@ -13,6 +13,11 @@ public class PlayerWindow:MonoBehaviour {
         SetName();
 
         evtSvc = GameRoot.Instance.GetEvtSvc();
+        evtSvc.AddEvtListener(EvtID.OnPlayerNameChange, RefreshPlayerName);
+
+    }
+    void RefreshPlayerName(object param1,object param2) {
+        SetName();
     }
 
     private void SetName() {
