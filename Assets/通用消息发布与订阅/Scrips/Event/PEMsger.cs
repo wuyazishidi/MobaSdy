@@ -12,7 +12,7 @@ public class PEMsger<T> {
         lock (m_lock) {
             while (msgQue.Count>0) {
                 MsgParams data = msgQue.Dequeue();
-                TriggerMsgHandler(data.GetMsgID(),data.GetParam1(),data.GEtParam2());
+                TriggerMsgHandler(data.GetMsgID(),data.GetParam1(),data.GetParam2());
             }
         }
     }
@@ -73,7 +73,7 @@ public class PEMsger<T> {
         public object GetParam1() {
             return m_param1;
         }
-        public object GEtParam2() {
+        public object GetParam2() {
             return m_param2;
         }
     }

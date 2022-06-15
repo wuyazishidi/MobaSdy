@@ -13,6 +13,7 @@ public class PEMsgMap<T> {
         Action<object, object> cbt = lst.Find((Action<object, object> callback) => {
             return callback.Equals(cb);
         });
+        //public T Find(Predicate<T> match)，Predicate是对方法的委托，若是传递给它的对象与委托中定义的条件匹配，则返回该方法返回true。当前List的元素被逐个传递给Predicate委托，并在List中向前移动，从第一个元素开始，到最后一个元素结束。当找到匹配项时处理即中止。
         if (cbt != null) {
             return;
         }
